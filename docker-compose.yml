@@ -1,0 +1,6 @@
+flashcard:
+  build: .
+  volumes:
+    - "./app:/src/app"
+  ports:
+    - "3030:3000"
