@@ -3,7 +3,7 @@ import React from 'react';
 class NavbarComponent extends React.Component {
   render() {
     return (
-    	<nav>
+    	<nav className="blue">
 		    <div className="nav-wrapper">
 		      <a href="#" className="brand-logo"></a>
 		      <ul id="nav-mobile" className="right hide-on-med-and-down">
