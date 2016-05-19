@@ -1,6 +1,6 @@
 flashcard:
   build: .
   volumes:
-    - "./app:/src/app"
+    - ".:/myapp"
   ports:
-    - "3030:3000"
+    - "8000:8000"
