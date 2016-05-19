@@ -23,7 +23,7 @@
   "keywords": [],
   "author": "Your name here",
   "devDependencies": {
-    "alt-utils": "^1.0.0",
+    "alt": "^0.16.0",
     "babel-core": "^6.0.0",
     "babel-eslint": "^6.0.0",
     "babel-loader": "^6.0.0",
