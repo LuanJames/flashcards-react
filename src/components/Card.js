@@ -30,25 +30,52 @@ class CardComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {card: this.props.obj};
+    this.handleConfirm = this.handleConfirm.bind(this);
+    this.state = {
+      card: this.props.obj,
+      editMode: true
+    };
+  }
+
+  handleConfirm(e) {
+
+
+    this.setState({
+      card: {
+        front: this.refs.front.getText(),
+        back: this.refs.back.getText()
+      },
+      editMode: false
+    });
+
   }
 
   render() {
+    var confirmBtn = (
+      <button onClick={this.handleConfirm} 
+        className="waves-effect waves-light btn">
+        <i className="material-icons left">cloud</i>
+        Confirm
+      </button>
+    );
     return (
       <div className="card">
         <div className="card-content">
           <InputComponent ref="front" title="Frente" />
-          <span className="card-title activator grey-text text-darken-4">
-            <a className="waves-effect waves-light btn">
+          <span className="card-title  grey-text text-darken-4">
+            <button className="waves-effect activator waves-light btn">
               <i className="material-icons left">cloud</i>
               Verso
-            </a>
+            </button>
+            {this.state.editMode ? confirmBtn : ''}
           </span>
         </div>
         <div className="card-reveal">
+          <span className="card-title grey-text text-darken-4">
+            Verso<i className="material-icons right">close</i>
+          </span>
+
           <InputComponent ref="back" title="Verso" />
-          <span className="card-title grey-text text-darken-4">Verso<i className="material-icons right">close</i></span>
-          <p>Nao sei o que eh</p>
         </div>
       </div>
     );
