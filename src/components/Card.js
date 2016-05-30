@@ -3,7 +3,7 @@ import React from 'react';
 class InputComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.state = {text: this.props.text};
     this.onChange = this.onChange.bind(this);
   }
 
@@ -19,7 +19,6 @@ class InputComponent extends React.Component {
     return (
         <div className="input-field">
           <textarea id="front" type="text" value={this.state.text} onChange={this.onChange} className="materialize-textarea" />
-          <label for="front">{this.props.title}</label>
         </div>
     );
   }
@@ -53,7 +52,8 @@ class CardComponent extends React.Component {
   render() {
     var confirmBtn = (
       <button onClick={this.handleConfirm} 
-        className="waves-effect waves-light btn">
+        className="waves-effect waves-light btn"
+        style={{marginLeft: 20}}>
         <i className="material-icons left">cloud</i>
         Confirm
       </button>
@@ -61,7 +61,7 @@ class CardComponent extends React.Component {
     return (
       <div className="card">
         <div className="card-content">
-          <InputComponent ref="front" title="Frente" />
+          <InputComponent ref="front" title="Frente" text={this.state.card.front} />
           <span className="card-title  grey-text text-darken-4">
             <button className="waves-effect activator waves-light btn">
               <i className="material-icons left">cloud</i>
@@ -75,7 +75,7 @@ class CardComponent extends React.Component {
             Verso<i className="material-icons right">close</i>
           </span>
 
-          <InputComponent ref="back" title="Verso" />
+          <InputComponent ref="back" title="Verso" text={this.state.card.back}/>
         </div>
       </div>
     );
@@ -83,7 +83,6 @@ class CardComponent extends React.Component {
 }
 
 CardComponent.defaultProps = {
-  obj: {id: 0, text: 'Frente'}
 };
 
 export default CardComponent;

@@ -7,31 +7,36 @@ require('materialize-css/dist/js/materialize.min.js');
 require('styles/App.css');
 
 import React from 'react';
-import Navbar from './Navbar'
-import CardsList from './CardsList'
+import AltContainer from 'alt-container';
+import Navbar from './Navbar';
+import CardsList from './CardsList';
+import CardActions from '../actions/CardActions';
+import CardStore from '../stores/CardStore';
 
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cards: []
-    };
   }
 
-  teste() {
-    var card = {id: this.state.cards.length+1};
-    this.state.cards.push(card);
-    this.setState({cards: this.state.cards});
+  addCard() {
+    CardActions.create({
+      front: 'Escreva a frente do cartão aqui',
+      back: 'Escreva o verso do cartão aqui.'
+    });
   }
 
   render() {
     return (
       <div>
       	<Navbar />
-          <CardsList cards={this.state.cards}/>
+          <AltContainer
+            store={CardStore}
+            >
+              <CardsList />
+          </AltContainer>
 
           <div className="fixed-action-btn" style={{bottom: '45px', right: '24px'}}>
-          	<a  onClick={() => this.teste()} className="btn-floating btn-large blue">
+          	<a  onClick={() => this.addCard()} className="btn-floating btn-large blue">
           		<i className="material-icons">add</i>
           	</a>
           </div>

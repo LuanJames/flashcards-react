@@ -5,7 +5,6 @@ import Card from './Card';
 class CardsListComponent extends React.Component {
   constructor(props) {
   	super(props);
-  	this.state = {cards: this.props.cards};
   }
 
   render() {
@@ -14,14 +13,13 @@ class CardsListComponent extends React.Component {
   	}
     return (
     	<div>
-    		{this.state.cards.map(item)}
+    		{this.props.cards.map(item)}
     	</div>
     );
   }
 }
 
 CardsListComponent.defaultProps = {
-	cards: [{text: 'primeiro'}]
 };
 
 export default CardsListComponent;
