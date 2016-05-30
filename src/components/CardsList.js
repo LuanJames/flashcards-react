@@ -5,15 +5,22 @@ import Card from './Card';
 class CardsListComponent extends React.Component {
   constructor(props) {
   	super(props);
+
+    this.updateCard = this.updateCard.bind(this);
+  }
+
+  updateCard(id, front, back) {
+    this.props.update({id, front, back});
   }
 
   render() {
-  	var item = function (item) {
-  		return <Card key={item.id} obj={item} />
-  	}
     return (
     	<div>
-    		{this.props.cards.map(item)}
+    		{this.props.cards.map((item) => {
+          return <Card key={item.id} obj={item} 
+            onEdit={this.props.update}
+            onDelete={this.props.delete} />
+        })}
     	</div>
     );
   }

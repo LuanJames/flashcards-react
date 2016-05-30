@@ -37,16 +37,11 @@ class CardComponent extends React.Component {
   }
 
   handleConfirm(e) {
-
-
-    this.setState({
-      card: {
-        front: this.refs.front.getText(),
-        back: this.refs.back.getText()
-      },
-      editMode: false
+    this.props.onEdit( {
+      id: this.state.card.id,
+      front: this.refs.front.getText(),
+      back: this.refs.back.getText()
     });
-
   }
 
   render() {

@@ -22,6 +22,10 @@ class CardStore {
   }
 
   update({id, front, back}) {
+    console.log(id);
+    console.log(front);
+    console.log(back);
+
     const cards = this.cards.map((card) => {
       if (card.id === id) {
         card.front = front;

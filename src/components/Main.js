@@ -31,7 +31,7 @@ class AppComponent extends React.Component {
       	<Navbar />
           <AltContainer
             store={CardStore}
-            >
+            actions={CardActions} >
               <CardsList />
           </AltContainer>
 
