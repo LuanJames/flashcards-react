@@ -23,6 +23,7 @@ class AppComponent extends React.Component {
       front: 'Escreva a frente do cartão aqui',
       back: 'Escreva o verso do cartão aqui.'
     });
+
   }
 
   render() {
