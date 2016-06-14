@@ -24,6 +24,8 @@
   "author": "Your name here",
   "devDependencies": {
     "alt": "^0.16.0",
+    "alt-utils": "^1.0.0",
+    "alt-container": "^1.0.2",
     "babel-core": "^6.0.0",
     "babel-eslint": "^6.0.0",
     "babel-loader": "^6.0.0",
@@ -62,7 +64,6 @@
     "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {
-    "alt-container": "^1.0.2",
     "core-js": "^2.0.0",
     "materialize-css": "^0.97.6",
     "node-uuid": "^1.4.7",
