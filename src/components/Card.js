@@ -14,11 +14,14 @@ class InputComponent extends React.Component {
   getText() {
     return this.state.text;
   }
+  componentDidMount() { 
+    this.refs.input.select();
+  }
 
   render() {
     return (
         <div className="input-field">
-          <textarea type="text" value={this.state.text} onChange={this.onChange} className="materialize-textarea" />
+          <textarea ref="input" type="text" value={this.state.text} onChange={this.onChange} onFocus={()=>{this.refs.input.select()}} className="materialize-textarea" />
         </div>
     );
   }
@@ -114,7 +117,6 @@ class CardComponent extends React.Component {
       <div className="card">
         <div className="card-content">
           <span className="card-title grey-text text-darken-4">
-            <span  style={{marginLeft: '5 px'}}>Frente</span>
             { this.state.editMode ? confirmBtn : menu }
             <a className=" material-icons right activator" >repeat</a>
                   
