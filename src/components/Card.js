@@ -24,19 +24,9 @@ class InputComponent extends React.Component {
   }
 }
 
-
-class CardComponent extends React.Component {
+class CardMenu extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleConfirmEdit = this.handleConfirmEdit.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-
-    this.state = {
-      card: this.props.obj,
-      editMode: false
-    };
   }
 
   componentDidMount() { 
@@ -50,6 +40,34 @@ class CardComponent extends React.Component {
       alignment: 'left' // Displays dropdown with edge aligned to the left of button
       }
     );
+  }
+
+  render() {
+    return (
+      <span>
+        <a className="dropdown-btn material-icons" data-activates={this.props.cardId}>info</a>
+        <ul id={this.props.cardId} className='dropdown-content'>
+          <li><a onClick={this.props.onEdit}>Editar</a></li>
+          <li><a onClick={this.props.onDelete}>Excluir</a></li>
+        </ul>
+      </span>
+    );
+  }
+}
+
+
+class CardComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleConfirmEdit = this.handleConfirmEdit.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+
+    this.state = {
+      card: this.props.obj,
+      editMode: false
+    };
   }
 
   handleEdit() {
@@ -73,15 +91,11 @@ class CardComponent extends React.Component {
 
   render() {
     var confirmBtn = (
-      <button onClick={this.handleConfirmEdit} 
-        className="waves-effect waves-light btn"
-        style={{marginLeft: 20}}>
-        <i className="material-icons left">cloud</i>
-        Confirm
-      </button>
+      <a onClick={this.handleConfirmEdit} 
+        className="material-icons" >
+        done
+      </a>
     );
-
-    var editBtn = <li><a onClick={this.handleEdit}>Editar</a></li>;
 
     var frontContent;
     var backContent;
@@ -93,27 +107,19 @@ class CardComponent extends React.Component {
       backContent  = <h5 className="center-align">{this.state.card.back}</h5>;
     }
 
+
+    var menu = <CardMenu cardId={this.state.card.id} onDelete={this.handleDelete} onEdit={this.handleEdit} />;
+
     return (
       <div className="card">
         <div className="card-content">
           <span className="card-title grey-text text-darken-4">
-            Frente<a className="dropdown-btn material-icons right"  data-activates={this.state.card.id}>info</a>
-            <ul id={this.state.card.id} className='dropdown-content'>
-
-            { (!this.state.editMode) ? editBtn : '' }
-              
-              <li><a onClick={this.handleDelete}>Excluir</a></li>
-            </ul>
+            <span  style={{marginLeft: '5 px'}}>Frente</span>
+            { this.state.editMode ? confirmBtn : menu }
+            <a className=" material-icons right activator" >repeat</a>
                   
           </span>
           { frontContent }
-          <span className="card-title grey-text text-darken-4">
-            <button className="waves-effect activator waves-light btn">
-              <i className="material-icons left">cloud</i>
-              Verso
-            </button>
-            {this.state.editMode ? confirmBtn : ''}
-          </span>
         </div>
         <div className="card-reveal">
           <span className="card-title grey-text text-darken-4">
